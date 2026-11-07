@@ -5,8 +5,8 @@ export function DeadlineChip({ deadline, size = 'md' }: { deadline: string; size
   const days = daysUntil(deadline);
   const base =
     size === 'sm'
-      ? 'text-[11px] px-2 py-0.5 gap-1'
-      : 'text-xs px-2.5 py-1 gap-1.5';
+      ? 'text-[11px] px-2 py-0.5 gap-1 whitespace-nowrap'
+      : 'text-xs px-2.5 py-1 gap-1.5 whitespace-nowrap';
   if (days < 0) {
     return (
       <span className={`inline-flex items-center rounded-full bg-[#fdecea] text-[#b42318] font-semibold ${base}`}>
@@ -38,10 +38,21 @@ export function DeadlineChip({ deadline, size = 'md' }: { deadline: string; size
   );
 }
 
-export function MatchRing({ score, size = 44 }: { score: number; size?: number }) {
+export function MatchRing({ score, size = 44, tone = 'light' }: { score: number; size?: number; tone?: 'light' | 'dark' }) {
   const r = 15.5;
   const c = 2 * Math.PI * r;
-  const color = score >= 70 ? '#0c3b2e' : score >= 50 ? '#b54708' : '#b42318';
+  const color =
+    tone === 'dark'
+      ? score >= 70
+        ? '#e8c15a'
+        : score >= 50
+          ? '#f0a35e'
+          : '#ff9d8a'
+      : score >= 70
+        ? '#0c3b2e'
+        : score >= 50
+          ? '#b54708'
+          : '#b42318';
   return (
     <span
       className="relative inline-flex shrink-0 items-center justify-center"
@@ -51,7 +62,7 @@ export function MatchRing({ score, size = 44 }: { score: number; size?: number }
       title={`Eligibility match: ${score}%`}
     >
       <svg width={size} height={size} viewBox="0 0 36 36" aria-hidden>
-        <circle cx="18" cy="18" r={r} fill="none" stroke="#e9e4d6" strokeWidth="3.5" />
+        <circle cx="18" cy="18" r={r} fill="none" stroke={tone === 'dark' ? 'rgba(255,255,255,0.25)' : '#e9e4d6'} strokeWidth="3.5" />
         <circle
           cx="18"
           cy="18"
@@ -65,7 +76,7 @@ export function MatchRing({ score, size = 44 }: { score: number; size?: number }
           transform="rotate(-90 18 18)"
         />
       </svg>
-      <span className="absolute text-[11px] font-bold text-[#1a1f1c]">{score}%</span>
+      <span className={`absolute text-[11px] font-bold ${tone === 'dark' ? 'text-white' : 'text-[#1a1f1c]'}`}>{score}%</span>
     </span>
   );
 }

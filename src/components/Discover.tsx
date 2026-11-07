@@ -238,7 +238,6 @@ export default function Discover({ onOpenDetail }: { onOpenDetail: (id: string) 
               {results.map(({ s, score }) => {
                 const isSaved = saved.includes(s.id);
                 const inCompare = compare.includes(s.id);
-                const closed = daysUntil(s.deadline) < 0;
                 return (
                   <article
                     key={s.id}
@@ -259,19 +258,19 @@ export default function Discover({ onOpenDetail }: { onOpenDetail: (id: string) 
                       <MatchRing score={score} />
                     </div>
                     <p className="mt-3 line-clamp-2 flex-1 text-sm leading-relaxed text-[#5b6360]">{s.description}</p>
-                    <div className="mt-4 flex items-center justify-between gap-2">
-                      <div>
+                    <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
+                      <span className="whitespace-nowrap">
                         <Amount value={s.amount} className="text-lg text-[#0c3b2e]" />
                         <span className="text-xs text-[#5b6360]"> / year</span>
-                      </div>
+                      </span>
                       <DeadlineChip deadline={s.deadline} size="sm" />
                     </div>
-                    <div className="mt-4 flex items-center gap-2 border-t border-[#f0ede4] pt-4">
+                    <div className="mt-4 flex flex-wrap items-center gap-1.5 border-t border-[#f0ede4] pt-4">
                       <button
                         type="button"
                         onClick={() => toggleSave(s.id)}
                         aria-pressed={isSaved}
-                        className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-2 text-xs font-bold transition-colors ${
+                        className={`inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 text-xs font-bold transition-colors ${
                           isSaved ? 'bg-[#e6f2ec] text-[#0c3b2e]' : 'bg-[#0c3b2e] text-white hover:bg-[#0a2e24]'
                         }`}
                       >
@@ -284,7 +283,7 @@ export default function Discover({ onOpenDetail }: { onOpenDetail: (id: string) 
                         disabled={!inCompare && compare.length >= 3}
                         aria-pressed={inCompare}
                         title={inCompare ? 'Remove from comparison' : compare.length >= 3 ? 'Compare holds up to 3' : 'Add to comparison'}
-                        className={`inline-flex items-center justify-center gap-1.5 rounded-full border px-3 py-2 text-xs font-bold transition-colors ${
+                        className={`inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-2 text-xs font-bold transition-colors ${
                           inCompare
                             ? 'border-[#c79a2b] bg-[#fdf8e7] text-[#9a7414]'
                             : 'border-[#e5e1d8] bg-white text-[#5b6360] hover:border-[#c79a2b] hover:text-[#9a7414] disabled:cursor-not-allowed disabled:opacity-40'
@@ -296,8 +295,8 @@ export default function Discover({ onOpenDetail }: { onOpenDetail: (id: string) 
                       <button
                         type="button"
                         onClick={() => onOpenDetail(s.id)}
-                        disabled={closed}
-                        className="inline-flex items-center justify-center rounded-full bg-[#f7f5ef] px-3 py-2 text-xs font-bold text-[#1a1f1c] hover:bg-[#efece2] disabled:opacity-40"
+                        className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#f7f5ef] px-2.5 py-2 text-xs font-bold text-[#1a1f1c] hover:bg-[#efece2]"
+                        aria-label={`View details of ${s.name}`}
                       >
                         Details
                       </button>

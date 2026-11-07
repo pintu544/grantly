@@ -56,7 +56,7 @@ export default function Detail({
               <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-white/80">{s.description}</p>
             </div>
             <div className="flex flex-col items-center gap-2 rounded-2xl bg-white/10 px-5 py-4">
-              <MatchRing score={score} size={64} />
+              <MatchRing score={score} size={64} tone="dark" />
               <span className="text-xs font-bold tracking-wide uppercase">{matchLabel(score)}</span>
               <span className="text-[11px] text-white/70">
                 {metCount} of {decisive} criteria met

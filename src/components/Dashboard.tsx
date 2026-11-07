@@ -68,28 +68,28 @@ export default function Dashboard({
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-2xl bg-white/10 p-4">
-              <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-white/70 uppercase">
-                <Trophy className="h-3.5 w-3.5" aria-hidden /> Strong matches
+              <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide whitespace-nowrap text-white/70 uppercase">
+                <Trophy className="h-3.5 w-3.5" aria-hidden /> Matches
               </p>
               <p className="mt-2 font-display text-4xl font-semibold">{strongMatches}</p>
               <p className="mt-1 text-xs text-white/70">of {SCHOLARSHIPS.length} scholarships fit your profile</p>
             </div>
             <div className="rounded-2xl bg-white/10 p-4">
-              <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-white/70 uppercase">
-                <IndianRupee className="h-3.5 w-3.5" aria-hidden /> Potential value
+              <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide whitespace-nowrap text-white/70 uppercase">
+                <IndianRupee className="h-3.5 w-3.5" aria-hidden /> Potential
               </p>
               <p className="mt-2 font-display text-4xl font-semibold">{formatINR(potential)}</p>
               <p className="mt-1 text-xs text-white/70">per year, across saved &amp; applied</p>
             </div>
             <div className="rounded-2xl bg-white/10 p-4">
-              <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-white/70 uppercase">
+              <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide whitespace-nowrap text-white/70 uppercase">
                 <Bookmark className="h-3.5 w-3.5" aria-hidden /> Saved
               </p>
               <p className="mt-2 font-display text-4xl font-semibold">{saved.length}</p>
               <p className="mt-1 text-xs text-white/70">scholarships on your shortlist</p>
             </div>
             <div className="rounded-2xl bg-white/10 p-4">
-              <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-white/70 uppercase">
+              <p className="flex items-center gap-1.5 text-xs font-semibold tracking-wide whitespace-nowrap text-white/70 uppercase">
                 <FileCheck2 className="h-3.5 w-3.5" aria-hidden /> In flight
               </p>
               <p className="mt-2 font-display text-4xl font-semibold">{inFlight.length}</p>
@@ -195,11 +195,11 @@ export default function Dashboard({
                 <MatchRing score={score} />
               </div>
               <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-[#5b6360]">{s.description}</p>
-              <div className="mt-4 flex items-center justify-between gap-3 border-t border-[#f0ede4] pt-4">
-                <div>
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-[#f0ede4] pt-4">
+                <span className="whitespace-nowrap">
                   <Amount value={s.amount} className="text-lg text-[#0c3b2e]" />
                   <span className="text-xs text-[#5b6360]"> / year</span>
-                </div>
+                </span>
                 <div className="flex items-center gap-2">
                   <DeadlineChip deadline={s.deadline} size="sm" />
                   <button
